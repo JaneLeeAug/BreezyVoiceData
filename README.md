@@ -52,3 +52,9 @@ Traceback (most recent call last):
   File "/proj/MR_dataset/mtk53732/miniconda3/envs/bz/lib/python3.10/ctypes/__init__.py", line 374, in __init__
     self._handle = _dlopen(self._name, mode)
 OSError: libcudart.so.11.0: cannot open shared object file: No such file or directory
+
+
+
+
+
+export PYTHONNOUSERSITE=1
