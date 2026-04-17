@@ -47,6 +47,10 @@ Traceback (most recent call last):
     _load_lib("libtorchaudio")
   File "/proj/MR_dataset/mtk53732/miniconda3/envs/bz/lib/python3.10/site-packages/torchaudio/_extension/utils.py", line 60, in _load_lib
     torch.ops.load_library(path)
+
+  
+  
+  
   File "/proj/MR_dataset/mtk53732/miniconda3/envs/bz/lib/python3.10/site-packages/torch/_ops.py", line 1032, in load_library
     ctypes.CDLL(path)
   File "/proj/MR_dataset/mtk53732/miniconda3/envs/bz/lib/python3.10/ctypes/__init__.py", line 374, in __init__
@@ -65,3 +69,8 @@ export PYTHONNOUSERSITE=1
 python -c "import torch; print(torch.__version__, torch.version.cuda)"
 pip show torch torchaudio torchvision
 conda list | egrep "torch|audio|vision|cuda|nvidia"
+
+
+
+
+source /proj/MR_dataset/mtk53732/miniconda3/etc/profile.d/conda.sh
