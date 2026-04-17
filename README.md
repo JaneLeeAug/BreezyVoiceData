@@ -74,3 +74,86 @@ conda list | egrep "torch|audio|vision|cuda|nvidia"
 
 
 source /proj/MR_dataset/mtk53732/miniconda3/etc/profile.d/conda.sh
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+(bz) gpu_mtk53732@colglx2002:~/BreezyVoice$ 
+
+python -c "import torch; print(torch.__version__, torch.version.cuda)"
+pip show torch torchaudio torchvision
+conda list | egrep "torch|audio|vision|cuda|nvidia"
+/proj/MR_dataset/mtk53732/miniconda3/envs/bz/lib/python3.10/site-packages/torch/cuda/__init__.py:56: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+2.3.1+cu121 12.1
+WARNING: Package(s) not found: torchvision
+Name: torch
+Version: 2.3.1
+Summary: Tensors and Dynamic neural networks in Python with strong GPU acceleration
+Home-page: https://pytorch.org/
+Author: PyTorch Team
+Author-email: packages@pytorch.org
+License: BSD-3
+Location: /proj/MR_dataset/mtk53732/miniconda3/envs/bz/lib/python3.10/site-packages
+Requires: filelock, fsspec, jinja2, networkx, nvidia-cublas-cu12, nvidia-cuda-cupti-cu12, nvidia-cuda-nvrtc-cu12, nvidia-cuda-runtime-cu12, nvidia-cudnn-cu12, nvidia-cufft-cu12, nvidia-curand-cu12, nvidia-cusolver-cu12, nvidia-cusparse-cu12, nvidia-nccl-cu12, nvidia-nvtx-cu12, sympy, triton, typing-extensions
+Required-by: conformer, deepspeed, lightning, openai-whisper, pytorch-lightning, torchaudio, torchmetrics
+---
+Name: torchaudio
+Version: 2.3.1+cu118
+Summary: An audio package for PyTorch
+Home-page: https://github.com/pytorch/audio
+Author: Soumith Chintala, David Pollack, Sean Naren, Peter Goldsborough, Moto Hira, Caroline Chen, Jeff Hwang, Zhaoheng Ni, Xiaohui Zhang
+Author-email: soumith@pytorch.org
+License: 
+Location: /proj/MR_dataset/mtk53732/miniconda3/envs/bz/lib/python3.10/site-packages
+Requires: torch
+Required-by: 
+audioread                      3.1.0            pypi_0           pypi
+nvidia-cublas-cu12             12.1.3.1         pypi_0           pypi
+nvidia-cuda-cupti-cu12         12.1.105         pypi_0           pypi
+nvidia-cuda-nvrtc-cu12         12.1.105         pypi_0           pypi
+nvidia-cuda-runtime-cu12       12.1.105         pypi_0           pypi
+nvidia-cudnn-cu12              8.9.2.26         pypi_0           pypi
+nvidia-cufft-cu12              11.0.2.54        pypi_0           pypi
+nvidia-curand-cu12             10.3.2.106       pypi_0           pypi
+nvidia-cusolver-cu12           11.4.5.107       pypi_0           pypi
+nvidia-cusparse-cu12           12.1.0.106       pypi_0           pypi
+nvidia-ml-py                   13.595.45        pypi_0           pypi
+nvidia-nccl-cu12               2.20.5           pypi_0           pypi
+nvidia-nvjitlink-cu12          12.9.86          pypi_0           pypi
+nvidia-nvtx-cu12               12.1.105         pypi_0           pypi
+pytorch-lightning              2.6.1            pypi_0           pypi
+torch                          2.3.1            pypi_0           pypi
+torchaudio                     2.3.1+cu118      pypi_0           pypi
+torchmetrics                   1.9.0            pypi_0           pypi
