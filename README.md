@@ -27,3 +27,7 @@ time python batch_inference.py \
   --csv_file ../BreezyVoiceData/pairing_chunks/pairing_part_000.csv\
   --speaker_prompt_audio_folder ../BreezyVoiceData/speakerWav \
   --output_audio_folder ./SD 2>&1 | tee SD000_results.txt
+
+
+
+source /proj/MR_dataset/mtk53732/miniconda3/etc/profile.d/conda.sh
