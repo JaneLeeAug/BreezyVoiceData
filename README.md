@@ -58,3 +58,10 @@ OSError: libcudart.so.11.0: cannot open shared object file: No such file or dire
 
 
 export PYTHONNOUSERSITE=1
+
+
+
+
+python -c "import torch; print(torch.__version__, torch.version.cuda)"
+pip show torch torchaudio torchvision
+conda list | egrep "torch|audio|vision|cuda|nvidia"
