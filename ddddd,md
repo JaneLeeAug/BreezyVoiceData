@@ -1,63 +1,40 @@
-Mon Apr 20 16:14:38 2026       
-+-----------------------------------------------------------------------------------------+
-| NVIDIA-SMI 580.95.05              Driver Version: 580.95.05      CUDA Version: 13.0     |
-+-----------------------------------------+------------------------+----------------------+
-| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
-| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
-|                                         |                        |               MIG M. |
-|=========================================+========================+======================|
-|   0  NVIDIA RTX A6000               On  |   00000000:1F:00.0 Off |                  Off |
-| 38%   62C    P2            156W /  300W |   11800MiB /  49140MiB |     42%      Default |
-|                                         |                        |                  N/A |
-+-----------------------------------------+------------------------+----------------------+
-|   1  NVIDIA RTX A6000               On  |   00000000:22:00.0 Off |                  Off |
-| 46%   72C    P2            291W /  300W |   11229MiB /  49140MiB |    100%      Default |
-|                                         |                        |                  N/A |
-+-----------------------------------------+------------------------+----------------------+
-|   2  NVIDIA RTX A6000               On  |   00000000:25:00.0 Off |                  Off |
-| 33%   63C    P2            184W /  300W |    4484MiB /  49140MiB |     46%      Default |
-|                                         |                        |                  N/A |
-+-----------------------------------------+------------------------+----------------------+
-|   3  NVIDIA RTX A6000               On  |   00000000:26:00.0 Off |                  Off |
-| 30%   36C    P8             23W /  300W |       0MiB /  49140MiB |      0%      Default |
-|                                         |                        |                  N/A |
-+-----------------------------------------+------------------------+----------------------+
-|   4  NVIDIA RTX A6000               On  |   00000000:9A:00.0 Off |                  Off |
-| 30%   35C    P8             18W /  300W |       0MiB /  49140MiB |      0%      Default |
-|                                         |                        |                  N/A |
-+-----------------------------------------+------------------------+----------------------+
-|   5  NVIDIA RTX A6000               On  |   00000000:9D:00.0 Off |                  Off |
-| 30%   34C    P8             23W /  300W |       0MiB /  49140MiB |      0%      Default |
-|                                         |                        |                  N/A |
-+-----------------------------------------+------------------------+----------------------+
-|   6  NVIDIA RTX A6000               On  |   00000000:A0:00.0 Off |                  Off |
-| 30%   32C    P8             28W /  300W |       0MiB /  49140MiB |      0%      Default |
-|                                         |                        |                  N/A |
-+-----------------------------------------+------------------------+----------------------+
-|   7  NVIDIA RTX A6000               On  |   00000000:A1:00.0 Off |                  Off |
-| 30%   32C    P8             21W /  300W |       0MiB /  49140MiB |      0%      Default |
-|                                         |                        |                  N/A |
-+-----------------------------------------+------------------------+----------------------+
-
-+-----------------------------------------------------------------------------------------+
-| Processes:                                                                              |
-|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
-|        ID   ID                                                               Usage      |
-|=========================================================================================|
-|    0   N/A  N/A         3660902      C   python                                 2236MiB |
-|    0   N/A  N/A         3661211      C   python                                 2240MiB |
-|    0   N/A  N/A         3661749      C   python                                 2226MiB |
-|    0   N/A  N/A         3662834      C   python                                 2250MiB |
-|    0   N/A  N/A         3677557      C   python                                 2914MiB |
-|    1   N/A  N/A         3663957      C   python                                 3182MiB |
-|    1   N/A  N/A         3665090      C   python                                 2650MiB |
-|    1   N/A  N/A         3667302      C   python                                 2244MiB |
-|    1   N/A  N/A         3669705      C   python                                 3128MiB |
-|    2   N/A  N/A         3672091      C   python                                 2246MiB |
-|    2   N/A  N/A         3674980      C   python                                 2224MiB |
-+-----------------------------------------------------------------------------------------+
-(bz) gpu_mtk53732@colglx2002:~/BreezyVoice$ python wavlength.py 
-Processing wav files: 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████| 118351/118351 [01:09<00:00, 1702.46it/s]
-
-Summary
-Total wav files: 118351
+Speaker prompt audio transcription: 短時間可能還可以。
+Map:  12%|█▏        | 1084/9400 [2:42:39<20:47:49,  9.00s/ examples]
+Content to be synthesized: 透由本次活動讓創業家及台灣創業。
+Synthesizing: 透由本次活動讓創業家及台灣創業。
+Elapsed time: 10.016082763671875
+Generated audio length: 5.201269841269841 seconds
+Generated voice saved to ../../MR_dataset/mtk53732/BreezyVoice_data/SD0000011041.wav
+Traceback (most recent call last):
+  File "/proj/gpu_mtk53732/BreezyVoice/batch_inference.py", line 76, in <module>
+    main()
+  File "/proj/gpu_mtk53732/BreezyVoice/batch_inference.py", line 67, in main
+    process_batch(
+  File "/proj/gpu_mtk53732/BreezyVoice/batch_inference.py", line 51, in process_batch
+    dataset = dataset.map(gen_audio)
+  File "/proj/MR_dataset/mtk53732/miniconda3/envs/bz/lib/python3.10/site-packages/datasets/arrow_dataset.py", line 574, in wrapper
+    out: Union["Dataset", "DatasetDict"] = func(self, *args, **kwargs)
+  File "/proj/MR_dataset/mtk53732/miniconda3/envs/bz/lib/python3.10/site-packages/datasets/arrow_dataset.py", line 3632, in map
+    for rank, done, content in Dataset._map_single(**unprocessed_kwargs):
+  File "/proj/MR_dataset/mtk53732/miniconda3/envs/bz/lib/python3.10/site-packages/datasets/arrow_dataset.py", line 3972, in _map_single
+    for i, example in iter_outputs(shard_iterable):
+  File "/proj/MR_dataset/mtk53732/miniconda3/envs/bz/lib/python3.10/site-packages/datasets/arrow_dataset.py", line 3950, in iter_outputs
+    yield i, apply_function(example, i, offset=offset)
+  File "/proj/MR_dataset/mtk53732/miniconda3/envs/bz/lib/python3.10/site-packages/datasets/arrow_dataset.py", line 3871, in apply_function
+    processed_inputs = function(*fn_args, *additional_args, **fn_kwargs)
+  File "/proj/gpu_mtk53732/BreezyVoice/batch_inference.py", line 31, in gen_audio
+    single_inference(speaker_prompt_audio_path, content_to_synthesize, output_audio_path, cosyvoice, bopomofo_converter, speaker_prompt_text_transcription)
+  File "/proj/gpu_mtk53732/BreezyVoice/single_inference.py", line 373, in single_inference
+    content_to_synthesize = cosyvoice.frontend.text_normalize_new(
+  File "/proj/gpu_mtk53732/BreezyVoice/single_inference.py", line 91, in text_normalize_new
+    e_out = text_normalize_no_split(outside_brackets[n],is_last = n == len(outside_brackets) - 1)
+  File "/proj/gpu_mtk53732/BreezyVoice/single_inference.py", line 55, in text_normalize_no_split
+    text = replace_blank(text)
+  File "/proj/gpu_mtk53732/BreezyVoice/cosyvoice/utils/frontend_utils.py", line 120, in replace_blank
+    if ((text[i + 1].isascii() and text[i + 1] != " ") and
+IndexError: string index out of range
+load tokenizer failed
+break model index not valid
+Command exited with non-zero status 1
+9186.11user 1727.88system 2:43:09elapsed 111%CPU (0avgtext+0avgdata 6060824maxresident)k
+0inputs+800440outputs (0major+181078595minor)pagefaults 0swaps
