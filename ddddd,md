@@ -1,0 +1,13 @@
+Processing wav files:   3%|███▌                                                                                                   | 3582/102895 [00:00<00:07, 13134.93it/s]
+Traceback (most recent call last):
+  File "/proj/gpu_mtk53732/BreezyVoice/wavlength.py", line 17, in <module>
+    info = sf.info(path)
+  File "/proj/MR_dataset/mtk53732/miniconda3/envs/bz/lib/python3.10/site-packages/soundfile.py", line 467, in info
+    return _SoundFileInfo(file, verbose)
+  File "/proj/MR_dataset/mtk53732/miniconda3/envs/bz/lib/python3.10/site-packages/soundfile.py", line 412, in __init__
+    with SoundFile(file) as f:
+  File "/proj/MR_dataset/mtk53732/miniconda3/envs/bz/lib/python3.10/site-packages/soundfile.py", line 658, in __init__
+    self._file = self._open(file, mode_int, closefd)
+  File "/proj/MR_dataset/mtk53732/miniconda3/envs/bz/lib/python3.10/site-packages/soundfile.py", line 1216, in _open
+    raise LibsndfileError(err, prefix="Error opening {0!r}: ".format(self.name))
+soundfile.LibsndfileError: Error opening './SD/SD0000202725.wav': Format not recognised.
