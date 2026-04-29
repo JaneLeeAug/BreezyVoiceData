@@ -14,3 +14,22 @@ export PYTHONNOUSERSITE=1
 
 conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/main
 conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/r
+
+
+
+--index-url https://download.pytorch.org/whl/cu121
+--extra-index-url https://pypi.org/simple
+
+torch==2.4.1
+torchaudio==2.4.1
+
+tqdm>=4.42.0
+scipy>=1.7.0
+numpy>=1.20.0,<1.24
+scikit-learn==1.0.2
+soundfile
+kaldiio
+pyyaml
+matplotlib
+pandas
+openpyxl
