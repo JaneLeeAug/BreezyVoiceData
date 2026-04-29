@@ -32,3 +32,14 @@ python -m pip install \
   --trusted-host pypi.org \
   --trusted-host files.pythonhosted.org \
   -r requirements.txt
+
+
+mkdir -p ~/.config/pip
+
+cat > ~/.config/pip/pip.conf << 'EOF'
+[global]
+trusted-host =
+    pypi.org
+    files.pythonhosted.org
+    download.pytorch.org
+EOF
