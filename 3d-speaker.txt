@@ -59,7 +59,7 @@ cd 3D-Speaker
 
 model_id=iic/speech_campplus_sv_zh-cn_16k-common
 
-python speakerlab/bin/infer_sv.py \
+PYTHONHTTPSVERIFY=0 python speakerlab/bin/infer_sv.py \
   --model_id $model_id \
   --wavs prompt.wav generated.wav
 
