@@ -51,5 +51,4 @@ conda install -y -c pytorch -c nvidia \
 
 conda install -y -c conda-forge \
   tqdm scipy numpy=1.23.5 scikit-learn=1.0.2 \
-  soundfile kaldiio pyyaml matplotlib pandas openpyxl
-
+  pysoundfile kaldiio pyyaml matplotlib pandas openpyxl
