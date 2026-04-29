@@ -43,3 +43,12 @@ trusted-host =
     files.pythonhosted.org
     download.pytorch.org
 EOF
+
+
+
+conda install -y -c pytorch -c nvidia \
+  pytorch=2.4.1 torchaudio=2.4.1 pytorch-cuda=12.1
+
+conda install -y -c conda-forge \
+  tqdm scipy numpy=1.23.5 scikit-learn=1.0.2 \
+  soundfile kaldiio pyyaml matplotlib pandas openpyxl
