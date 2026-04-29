@@ -1,0 +1,8 @@
+git clone https://github.com/modelscope/3D-Speaker.git
+cd 3D-Speaker
+
+conda create -n 3dspeaker python=3.8 -y
+conda activate 3dspeaker
+
+pip install -r requirements.txt
+pip install modelscope
