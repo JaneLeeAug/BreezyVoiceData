@@ -77,4 +77,8 @@ export CURL_CA_BUNDLE=""
 export REQUESTS_CA_BUNDLE=""
 export PYTHONHTTPSVERIFY=0
 
+
+
+tar -xzf speech_campplus_sv_zh-cn_16k-common.tar.gz \
+    -C ~/.cache/modelscope/hub/models/iic/
 PYTHONHTTPSVERIFY=0 
