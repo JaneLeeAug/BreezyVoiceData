@@ -6,3 +6,6 @@ conda activate 3dspeaker
 
 pip install -r requirements.txt
 pip install modelscope
+
+
+export PYTHONNOUSERSITE=1
