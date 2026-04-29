@@ -52,3 +52,13 @@ conda install -y -c pytorch -c nvidia \
 conda install -y -c conda-forge \
   tqdm scipy numpy=1.23.5 scikit-learn=1.0.2 \
   pysoundfile kaldiio pyyaml matplotlib pandas openpyxl
+
+
+
+cd 3D-Speaker
+
+model_id=iic/speech_campplus_sv_zh-cn_16k-common
+
+python speakerlab/bin/infer_sv.py \
+  --model_id $model_id \
+  --wavs prompt.wav generated.wav
