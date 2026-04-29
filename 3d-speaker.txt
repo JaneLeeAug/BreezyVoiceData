@@ -81,4 +81,10 @@ export PYTHONHTTPSVERIFY=0
 
 tar -xzf speech_campplus_sv_zh-cn_16k-common.tar.gz \
     -C ~/.cache/modelscope/hub/models/iic/
-PYTHONHTTPSVERIFY=0 
+
+
+(3dspeaker39) gpu_mtk53732@colglx2002:~/modelscope/models$ 
+tar -xzf speech_campplus_sv_zh-cn_16k-common.tar.gz \
+    -C ~/.cache/modelscope/hub/models/iic/
+tar: /proj/gpu_mtk53732/.cache/modelscope/hub/models/iic: Cannot open: No such file or directory
+tar: Error is not recoverable: exiting now
