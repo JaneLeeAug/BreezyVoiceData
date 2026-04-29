@@ -88,3 +88,12 @@ tar -xzf speech_campplus_sv_zh-cn_16k-common.tar.gz \
     -C ~/.cache/modelscope/hub/models/iic/
 tar: /proj/gpu_mtk53732/.cache/modelscope/hub/models/iic: Cannot open: No such file or directory
 tar: Error is not recoverable: exiting now
+
+
+
+
+model_id=iic/speech_campplus_sv_zh-cn_16k-common
+
+python speakerlab/bin/infer_sv.py \
+  --model_id $model_id \
+  --wavs prompt.wav generated.wav
