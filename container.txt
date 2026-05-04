@@ -1,1 +1,9 @@
-ENV PYTHONHTTPSVERIFY=0
+(bz) gpu_mtk53732@colglx2002:~$ podman images
+REPOSITORY                TAG         IMAGE ID      CREATED         SIZE
+localhost/bz              260504      a0aadc82e3e5  11 minutes ago  12.8 GB
+<none>                    <none>      fe7e9018ef68  26 minutes ago  7.74 GB
+<none>                    <none>      08877f9e2809  2 hours ago     7.74 GB
+<none>                    <none>      dce2da6ec118  3 hours ago     574 MB
+<none>                    <none>      cf0877ba79f6  3 hours ago     574 MB
+<none>                    <none>      cca8379d2ee5  4 hours ago     681 MB
+docker.io/library/ubuntu  22.04       714d1a2f39e9  3 weeks ago     80.6 MB
