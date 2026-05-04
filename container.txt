@@ -1,13 +1,9 @@
-nthesizing: 学[:ㄒㄩㄝ2]仁是他男朋友
-Elapsed time: 6.245378255844116
-Generated audio length: 2.380045351473923 seconds
-Generated voice saved to ../SD/SD0006280330.wav
-Map:   0%|                                                                                    | 131/9303000 [19:14<21695:34:10,  8.40s/ examples]Speaker prompt audio transcription: 卡那卡那富语[:ㄩ3]、茂林鲁[:ㄌㄨ3]凯[:ㄎㄞ3]语[:ㄩ3]
-Content to be synthesized: 改我的个[:ㄍㄜ4]性
-Synthesizing: 改我的个[:ㄍㄜ4]性
-Elapsed time: 8.231427431106567
-Generated audio length: 3.0998639455782313 seconds
-Generated voice saved to ../SD/SD0007477034.wav
-Map:   0%|                                                                                    | 132/9303000 [19:24<22651:18:08,  8.77s/ examples]Speaker prompt audio transcription: 永远[:ㄩㄢ3]不会[:ㄏㄨㄟ4]疲倦的旅程
-Content to be synthesized: 不是很常做callback吗[:ㄇㄚ5]
-Synthesizing: 不是很常做callback吗[:ㄇㄚ5]
+converter = opencc.OpenCC('s2t')
+
+speaker_prompt_text_transcription = converter.convert(
+    cosyvoice.frontend.text_normalize_new(speaker_prompt_text_transcription, split=False)
+)
+
+content_to_synthesize = converter.convert(
+    cosyvoice.frontend.text_normalize_new(content_to_synthesize, split=False)
+)
