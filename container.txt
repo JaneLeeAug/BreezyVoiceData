@@ -1,1 +1,93 @@
+# file: bz.Dockerfile
+
+FROM docker.io/library/ubuntu:22.04
+
+ARG PIP_EXTRA_INDEX_URL=http://oa-mirror.mediatek.inc/repository/pypi/simple
+
+# COPY mtk_sources.list /etc/apt/sources.list
+# RUN rm /etc/apt/sources.list.d/*
+
+# install system dependencies + Python 3.10 from Ubuntu 22.04 default repo
+RUN apt-get update -y \
+    && apt-get install -y --no-install-recommends \
+        python3.10 \
+        python3.10-dev \
+        python3.10-venv \
+        python3-pip \
+        curl \
+        wget \
+        vim \
+        tmux \
+        unzip \
+        libaio-dev \
+        pdsh \
+        ccache \
+        build-essential \
+        cmake \
+        zlib1g-dev \
+        libbz2-dev \
+        liblzma-dev \
+        net-tools \
+        iperf3 \
+        git \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN python3.10 -m venv /opt/bz_venv
+
+ENV PATH=/opt/bz_venv/bin:$PATH
 ENV PIP_NO_VERIFY_CERTS=1
+
+RUN pip config set global.index-url http://oa-mirror.mediatek.inc/repository/pypi/simple \
+    && pip config set global.trusted-host oa-mirror.mediatek.inc \
+    && pip config set global.extra-index-url http://oa-mirror.mediatek.inc/repository/pypi/simple \
+    && pip config set global.no-cache-dir true
+
+COPY bz_requirements_no_torch.txt /tmp/bz_requirements_no_torch.txt
+
+RUN pip install --upgrade "pip<25" "setuptools<70" wheel \
+    && pip install --no-build-isolation -r /tmp/bz_requirements_no_torch.txt
+
+RUN pip config set global.trusted-host download.pytorch.org \
+    && pip config set global.trusted-host oa-mirror.mediatek.inc
+
+RUN pip install \
+    --index-url https://download.pytorch.org/whl/cu118 \
+    --trusted-host download.pytorch.org \
+    --trusted-host oa-mirror.mediatek.inc \
+    torch==2.3.1+cu118 \
+    torchaudio==2.3.1+cu118 \
+    torchvision==0.18.1+cu118
+
+WORKDIR /workspace
+
+
+ENV CUDA_HOME=/opt/conda
+ENV PYTHONPATH=/workspace:$PYTHONPATH
+
+ENTRYPOINT []
+
+
+
+
+
+[notice] A new release of pip is available: 24.3.1 -> 26.1
+[notice] To update, run: pip install --upgrade pip
+--> 69f528b3a2f1
+STEP 10/15: RUN pip config set global.trusted-host download.pytorch.org     && pip config set global.trusted-host oa-mirror.mediatek.inc
+Writing to /root/.config/pip/pip.conf
+Writing to /root/.config/pip/pip.conf
+--> fe7e9018ef68
+STEP 11/15: RUN pip install     --index-url https://download.pytorch.org/whl/cu118     --trusted-host download.pytorch.org     --trusted-host oa-mirror.mediatek.inc     torch==2.3.1+cu118     torchaudio==2.3.1+cu118     torchvision==0.18.1+cu118
+Looking in indexes: https://download.pytorch.org/whl/cu118, http://oa-mirror.mediatek.inc/repository/pypi/simple
+Collecting torch==2.3.1+cu118
+  WARNING: Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1007)'))': /whl/cu118/torch-2.3.1%2Bcu118-cp310-cp310-linux_x86_64.whl
+  WARNING: Retrying (Retry(total=3, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1007)'))': /whl/cu118/torch-2.3.1%2Bcu118-cp310-cp310-linux_x86_64.whl
+  WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1007)'))': /whl/cu118/torch-2.3.1%2Bcu118-cp310-cp310-linux_x86_64.whl
+  WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1007)'))': /whl/cu118/torch-2.3.1%2Bcu118-cp310-cp310-linux_x86_64.whl
+  WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1007)'))': /whl/cu118/torch-2.3.1%2Bcu118-cp310-cp310-linux_x86_64.whl
+ERROR: Could not install packages due to an OSError: HTTPSConnectionPool(host='download-r2.pytorch.org', port=443): Max retries exceeded with url: /whl/cu118/torch-2.3.1%2Bcu118-cp310-cp310-linux_x86_64.whl (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1007)')))
+
+
+[notice] A new release of pip is available: 24.3.1 -> 26.1
+[notice] To update, run: pip install --upgrade pip
+Error: building at STEP "RUN pip install     --index-url https://download.pytorch.org/whl/cu118     --trusted-host download.pytorch.org     --trusted-host oa-mirror.mediatek.inc     torch==2.3.1+cu118     torchaudio==2.3.1+cu118     torchvision==0.18.1+cu118": while running runtime: exit status 1
