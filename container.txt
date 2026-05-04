@@ -1,11 +1,13 @@
-from transformers import BertTokenizer
-
-_real_from_pretrained = BertTokenizer.from_pretrained
-
-def _patched_from_pretrained(model_name_or_path, *args, **kwargs):
-    if model_name_or_path == "bert-base-chinese":
-        print("[Patch] Redirect bert-base-chinese to local path")
-        model_name_or_path = "/proj/MR_dataset/mtk53732/pretrained_models/bert-base-chinese"
-    return _real_from_pretrained(model_name_or_path, *args, **kwargs)
-
-BertTokenizer.from_pretrained = _patched_from_pretrained
+nthesizing: 学[:ㄒㄩㄝ2]仁是他男朋友
+Elapsed time: 6.245378255844116
+Generated audio length: 2.380045351473923 seconds
+Generated voice saved to ../SD/SD0006280330.wav
+Map:   0%|                                                                                    | 131/9303000 [19:14<21695:34:10,  8.40s/ examples]Speaker prompt audio transcription: 卡那卡那富语[:ㄩ3]、茂林鲁[:ㄌㄨ3]凯[:ㄎㄞ3]语[:ㄩ3]
+Content to be synthesized: 改我的个[:ㄍㄜ4]性
+Synthesizing: 改我的个[:ㄍㄜ4]性
+Elapsed time: 8.231427431106567
+Generated audio length: 3.0998639455782313 seconds
+Generated voice saved to ../SD/SD0007477034.wav
+Map:   0%|                                                                                    | 132/9303000 [19:24<22651:18:08,  8.77s/ examples]Speaker prompt audio transcription: 永远[:ㄩㄢ3]不会[:ㄏㄨㄟ4]疲倦的旅程
+Content to be synthesized: 不是很常做callback吗[:ㄇㄚ5]
+Synthesizing: 不是很常做callback吗[:ㄇㄚ5]
