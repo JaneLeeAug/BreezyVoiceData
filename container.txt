@@ -1,5 +1,5 @@
-nvidia-smi
-
-
-python -c "import torch; print(torch.cuda.is_available(), torch.cuda.device_count())"
-echo $HF_HUB_DISABLE_SSL_VERIFICATION
+export HF_HUB_DISABLE_SSL_VERIFICATION=1
+export CURL_CA_BUNDLE=""
+export REQUESTS_CA_BUNDLE=""
+export SSL_CERT_FILE=""
+export PYTHONHTTPSVERIFY=0
