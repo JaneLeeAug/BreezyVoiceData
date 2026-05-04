@@ -1,9 +1,1 @@
-(bz) gpu_mtk53732@colglx2002:~$ podman images
-REPOSITORY                TAG         IMAGE ID      CREATED         SIZE
-localhost/bz              260504      a0aadc82e3e5  11 minutes ago  12.8 GB
-<none>                    <none>      fe7e9018ef68  26 minutes ago  7.74 GB
-<none>                    <none>      08877f9e2809  2 hours ago     7.74 GB
-<none>                    <none>      dce2da6ec118  3 hours ago     574 MB
-<none>                    <none>      cf0877ba79f6  3 hours ago     574 MB
-<none>                    <none>      cca8379d2ee5  4 hours ago     681 MB
-docker.io/library/ubuntu  22.04       714d1a2f39e9  3 weeks ago     80.6 MB
+podman run -it --device /dev/nvidia0 --device /dev/nvidia1 --device /dev/nvidia2 --device /dev/nvidia3 --device /dev/nvidia4 --device /dev/nvidia5 --device /dev/nvidia6 --device /dev/nvidia7 --device /dev/nvidiactl --device /dev/nvidia-uvm --device /dev/nvidia-modeset --security-opt=label=disable -v /usr/bin/nvidia-smi:/usr/bin/nvidia-smi:ro -v /lib/x86_64-linux-gnu:/host-libs:ro -v /usr/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:ro -v /usr/local/cuda-13.0/targets/x86_64-linux/lib:/host-cuda-libs:ro -e LD_LIBRARY_PATH=/host-cuda-libs:$LD_LIBRARY_PATH -v $HOME:$HOME -v /proj/MR_dataset/gpu_mtk53732:/proj/MR_dataset/mtk53732 --shm-size 100g localhost/bz:260504 /bin/bash
