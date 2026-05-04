@@ -1,3 +1,6 @@
 python speakerlab/bin/infer_sv.py \
   --model_id iic/speech_campplus_sv_zh-cn_16k-common \
   --wavs prompt_16k.wav generated_16k.wav
+
+
+ls -1 | shuf -n 10
