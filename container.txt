@@ -1,9 +1,4 @@
-import os
-
-if not os.path.isdir(model_dir):
-    raise ValueError(
-        f"Model path must be a local directory, got: {model_dir}\n"
-        "Please download the model beforehand."
-    )
-
-print(f"Using local model path: {model_dir}")
+export HF_HOME=/proj/gpu_mtk53732/.cache/huggingface
+export TRANSFORMERS_CACHE=/proj/gpu_mtk53732/.cache/huggingface/hub
+export HF_HUB_OFFLINE=1
+export TRANSFORMERS_OFFLINE=1
