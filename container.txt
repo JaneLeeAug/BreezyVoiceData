@@ -1,1 +1,12 @@
-podman run -it --device /dev/nvidia0 --device /dev/nvidia1 --device /dev/nvidia2 --device /dev/nvidia3 --device /dev/nvidia4 --device /dev/nvidia5 --device /dev/nvidia6 --device /dev/nvidia7 --device /dev/nvidiactl --device /dev/nvidia-uvm --device /dev/nvidia-modeset --security-opt=label=disable -v /usr/bin/nvidia-smi:/usr/bin/nvidia-smi:ro -v /lib/x86_64-linux-gnu:/host-libs:ro -v /usr/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:ro -v /usr/local/cuda-13.0/targets/x86_64-linux/lib:/host-cuda-libs:ro -e LD_LIBRARY_PATH=/host-cuda-libs:$LD_LIBRARY_PATH -v $HOME:$HOME -v /proj/MR_dataset/gpu_mtk53732:/proj/MR_dataset/mtk53732 --shm-size 100g yarn_nemo-25.11 /bin/bash
+(bz) gpu_mtk53732@colglx2002:~$ podman build -f bz.Dockerfile -t bz:260504 .
+STEP 1/11: FROM docker.io/library/ubuntu:22.04
+Trying to pull docker.io/library/ubuntu:22.04...
+Getting image source signatures
+Copying blob f63eb04151bc done   | 
+Copying config 714d1a2f39 done   | 
+Writing manifest to image destination
+STEP 2/11: ARG PIP_EXTRA_INDEX_URL=http://oa-mirror.mediatek.inc/repository/pypi/simple
+--> 58e0f48a5fff
+STEP 3/11: RUN pip config set global.index-url http://oa-mirror.mediatek.inc/repository/pypi/simple   && pip config set global.trusted-host oa-mirror.mediatek.inc   && pip config set global.extra-index-url http://oa-mirror.mediatek.inc/repository/pypi/simple   && pip config set global.no-cache-dir true
+/bin/sh: 1: pip: not found
+Error: building at STEP "RUN pip config set global.index-url http://oa-mirror.mediatek.inc/repository/pypi/simple   && pip config set global.trusted-host oa-mirror.mediatek.inc   && pip config set global.extra-index-url http://oa-mirror.mediatek.inc/repository/pypi/simple   && pip config set global.no-cache-dir true": while running runtime: exit status 127
