@@ -73,17 +73,17 @@ zipp
 
 # file: 3dspeaker.Dockerfile
 
-FROM docker.io/library/ubuntu:22.04
+FROM docker.io/library/python:3.9-slim-bullseye
 
 ARG PIP_INDEX_URL=http://oa-mirror.mediatek.inc/repository/pypi/simple
 ARG TORCH_INDEX_URL=https://download.pytorch.org/whl/cu118
 
 ENV DEBIAN_FRONTEND=noninteractive
 ENV PYTHONHTTPSVERIFY=0
+ENV PATH=/opt/3dspeaker_venv/bin:$PATH
 
 RUN apt-get update -y \
     && apt-get install -y --no-install-recommends \
-        software-properties-common \
         ca-certificates \
         curl \
         wget \
@@ -102,18 +102,9 @@ RUN apt-get update -y \
         net-tools \
         iperf3 \
         git \
-    && add-apt-repository ppa:deadsnakes/ppa -y \
-    && apt-get update -y \
-    && apt-get install -y --no-install-recommends \
-        python3.9 \
-        python3.9-dev \
-        python3.9-venv \
-        python3-pip \
     && rm -rf /var/lib/apt/lists/*
 
-RUN python3.9 -m venv /opt/3dspeaker_venv
-
-ENV PATH=/opt/3dspeaker_venv/bin:$PATH
+RUN python -m venv /opt/3dspeaker_venv
 
 RUN pip config set global.index-url ${PIP_INDEX_URL} \
     && pip config set global.trusted-host oa-mirror.mediatek.inc \
@@ -137,9 +128,6 @@ WORKDIR /workspace
 ENV PYTHONPATH=/workspace:$PYTHONPATH
 
 ENTRYPOINT []
-
-
-
 
 
 
