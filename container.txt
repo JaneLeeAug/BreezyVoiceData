@@ -27,3 +27,6 @@ CUDA_VISIBLE_DEVICES=3 python batch_inference.py \
 
 cp: cannot stat '/proj/gpu_mtk53732/.cache/huggingface/hub/models--MediaTek-Research--BreezyVoice-300M/snapshots/8f23c25b06e129b6c986331a13d8d025a92cf0ea': No such file or directory
 (base) gpu_mtk53732@colglx2002:~$ 
+
+
+ls /proj/gpu_mtk53732/.cache/huggingface/hub/models--MediaTek-Research--BreezyVoice-300M/snapshots
