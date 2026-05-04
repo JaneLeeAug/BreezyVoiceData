@@ -1,9 +1,18 @@
-Traceback (most recent call last):
-  File "/proj/MR_dataset/mtk53732/BreezyVoice/batch_inference.py", line 76, in <module>
-    main()
-  File "/proj/MR_dataset/mtk53732/BreezyVoice/batch_inference.py", line 62, in main
-    cosyvoice = CustomCosyVoice(args.model_path)
-  File "/proj/MR_dataset/mtk53732/BreezyVoice/single_inference.py", line 211, in __init__
-    raise ValueError(
-ValueError: Model path must be a local directory, got: /proj/gpu_mtk53732/.cache/huggingface/hub/models--MediaTek-Research--BreezyVoice-300M/snapshots/8f23c25b06e129b6c986331a13d8d025a92cf0ea
-Please download the model beforehand.
+mkdir -p /proj/MR_dataset/mtk53732/pretrained_models
+
+cp -r /proj/gpu_mtk53732/.cache/huggingface/hub/models--MediaTek-Research--BreezyVoice-300M/snapshots/8f23c25b06e129b6c986331a13d8d025a92cf0ea \
+  /proj/MR_dataset/mtk53732/pretrained_models/BreezyVoice-300M
+
+
+
+
+
+
+
+
+
+CUDA_VISIBLE_DEVICES=3 python batch_inference.py \
+  --model_path /proj/MR_dataset/mtk53732/pretrained_models/BreezyVoice-300M \
+  --csv_file ../pairing_table.csv \
+  --speaker_prompt_audio_folder ../speakerWav \
+  --output_audio_folder ../SD
