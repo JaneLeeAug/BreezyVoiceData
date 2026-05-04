@@ -1,9 +1,5 @@
-converter = opencc.OpenCC('s2t')
-
-speaker_prompt_text_transcription = converter.convert(
-    cosyvoice.frontend.text_normalize_new(speaker_prompt_text_transcription, split=False)
-)
-
-content_to_synthesize = converter.convert(
-    cosyvoice.frontend.text_normalize_new(content_to_synthesize, split=False)
-)
+CUDA_VISIBLE_DEVICES=3 python batch_inference.py \
+  --model_path /proj/MR_dataset/mtk53732/pretrained_models/BreezyVoice-300M \
+  --csv_file ../pairing_table/pairing_table.csv \
+  --speaker_prompt_audio_folder ../speakerWav \
+  --output_audio_folder ../SD
