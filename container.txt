@@ -1,5 +1,2 @@
-export HF_HUB_DISABLE_SSL_VERIFICATION=1
-export CURL_CA_BUNDLE=""
-export REQUESTS_CA_BUNDLE=""
-export SSL_CERT_FILE=""
-export PYTHONHTTPSVERIFY=0
+find /proj/MR_dataset/mtk53732 -maxdepth 4 -type d | grep -i -E "cosy|breezy|model|pretrained"
+find $HOME -maxdepth 5 -type d | grep -i -E "huggingface|cosy|breezy|model"
