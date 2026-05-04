@@ -1,12 +1,4 @@
-Collecting tokenizers==0.22.2 (from -r /tmp/bz_requirements.txt (line 172))
-  Downloading http://oa-mirror.mediatek.inc/repository/pypi/%2Bf/369/cc9fc8cc10cb2/tokenizers-0.22.2-cp39-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (3.3 MB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.3/3.3 MB 30.8 MB/s eta 0:00:00
-Collecting tomlkit==0.12.0 (from -r /tmp/bz_requirements.txt (line 173))
-  Downloading http://oa-mirror.mediatek.inc/repository/pypi/%2Bf/926/f1f37a1587c7a/tomlkit-0.12.0-py3-none-any.whl (37 kB)
-ERROR: Ignored the following versions that require a different python version: 0.36.0 Requires-Python >=3.6,<3.10; 0.37.0 Requires-Python >=3.7,<3.10; 0.52.0 Requires-Python >=3.6,<3.9; 0.52.0rc3 Requires-Python >=3.6,<3.9; 0.53.0 Requires-Python >=3.6,<3.10; 0.53.0rc1.post1 Requires-Python >=3.6,<3.10; 0.53.0rc2 Requires-Python >=3.6,<3.10; 0.53.0rc3 Requires-Python >=3.6,<3.10; 0.53.1 Requires-Python >=3.6,<3.10; 0.54.0 Requires-Python >=3.7,<3.10; 0.54.0rc2 Requires-Python >=3.7,<3.10; 0.54.0rc3 Requires-Python >=3.7,<3.10; 0.54.1 Requires-Python >=3.7,<3.10; 1.16.0 Requires-Python >=3.11; 1.16.0rc1 Requires-Python >=3.11; 1.16.0rc2 Requires-Python >=3.11; 1.16.1 Requires-Python >=3.11; 1.16.2 Requires-Python >=3.11; 1.16.3 Requires-Python >=3.11; 1.17.0 Requires-Python >=3.11; 1.17.0rc1 Requires-Python >=3.11; 1.17.0rc2 Requires-Python >=3.11; 1.17.1 Requires-Python >=3.11; 1.3.3 Requires-Python >=3.11; 1.6.2 Requires-Python >=3.7,<3.10; 1.6.3 Requires-Python >=3.7,<3.10; 1.7.0 Requires-Python >=3.7,<3.10; 1.7.1 Requires-Python >=3.7,<3.10; 1.8.0 Requires-Python >=3.11; 1.8.0rc1 Requires-Python >=3.11; 2.3.0 Requires-Python >=3.11; 2.3.1 Requires-Python >=3.11; 2.3.2 Requires-Python >=3.11; 2.3.3 Requires-Python >=3.11; 2.3.4 Requires-Python >=3.11; 2.3.5 Requires-Python >=3.11; 2.4.0 Requires-Python >=3.11; 2.4.0rc1 Requires-Python >=3.11; 2.4.1 Requires-Python >=3.11; 2.4.2 Requires-Python >=3.11; 2.4.3 Requires-Python >=3.11; 2.4.4 Requires-Python >=3.11; 3.0.0 Requires-Python >=3.11; 3.0.0rc0 Requires-Python >=3.11; 3.0.0rc1 Requires-Python >=3.11; 3.0.0rc2 Requires-Python >=3.11; 3.0.1 Requires-Python >=3.11; 3.0.2 Requires-Python >=3.11; 3.11.0rc1 Requires-Python >=3.11; 3.5 Requires-Python >=3.11; 3.5rc0 Requires-Python >=3.11; 3.6 Requires-Python >=3.11; 3.6.1 Requires-Python !=3.14.1,>=3.11; 3.6rc0 Requires-Python >=3.11
-ERROR: Could not find a version that satisfies the requirement torch==2.3.1+cu118 (from versions: 1.11.0, 1.12.0, 1.12.1, 1.13.0, 1.13.1, 2.0.0, 2.0.1, 2.1.0, 2.1.1, 2.1.2, 2.2.0, 2.2.1, 2.2.2, 2.3.0, 2.3.1, 2.4.0, 2.4.1, 2.5.0, 2.5.1, 2.6.0, 2.7.0, 2.7.1, 2.8.0, 2.9.0, 2.9.1, 2.10.0, 2.11.0)
-
-[notice] A new release of pip is available: 24.3.1 -> 26.1
-[notice] To update, run: pip install --upgrade pip
-ERROR: No matching distribution found for torch==2.3.1+cu118
-Error: building at STEP "RUN pip install --upgrade "pip<25" "setuptools<70" wheel     && pip install --no-build-isolation -r /tmp/bz_requirements.txt": while running runtime: exit status 1
+RUN pip install --upgrade "pip<25" "setuptools<70" wheel \
+    && pip install --no-build-isolation \
+        --extra-index-url https://download.pytorch.org/whl/cu118 \
+        -r /tmp/bz_requirements.txt
