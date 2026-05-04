@@ -1,6 +1,6 @@
 mkdir -p /proj/MR_dataset/mtk53732/pretrained_models
 
-cp -r /proj/gpu_mtk53732/.cache/huggingface/hub/models--MediaTek-Research--BreezyVoice-300M/snapshots/8f23c25b06e129b6c986331a13d8d025a92cf0ea \
+cp -r /proj/gpu_mtk53732/.cache/huggingface/hub/models--MediaTek-Research--BreezyVoice-300M/snapshots/e33b502e0ac21c16b0ee0d00df66ac3fa737393d \
   /proj/MR_dataset/mtk53732/pretrained_models/BreezyVoice-300M
 
 
@@ -18,15 +18,11 @@ CUDA_VISIBLE_DEVICES=3 python batch_inference.py \
   --output_audio_folder ../SD
 
 
-
-
-(base) gpu_mtk53732@colglx2002:~$ mkdir -p /proj/MR_dataset/mtk53732/pretrained_models
-(base) gpu_mtk53732@colglx2002:~$ cp -r /proj/gpu_mtk53732/.cache/huggingface/hub/models--MediaTek-Research--BreezyVoice-300M/snapshots/8f23c25b06e129b6c986331a13d8d025a92cf0ea \
-  /proj/MR_dataset/mtk53732/pretrained_models/BreezyVoice-300M
-
-
-cp: cannot stat '/proj/gpu_mtk53732/.cache/huggingface/hub/models--MediaTek-Research--BreezyVoice-300M/snapshots/8f23c25b06e129b6c986331a13d8d025a92cf0ea': No such file or directory
-(base) gpu_mtk53732@colglx2002:~$ 
-
-
-ls /proj/gpu_mtk53732/.cache/huggingface/hub/models--MediaTek-Research--BreezyVoice-300M/snapshots
+Traceback (most recent call last):
+  File "/proj/MR_dataset/mtk53732/BreezyVoice/batch_inference.py", line 76, in <module>
+    main()
+  File "/proj/MR_dataset/mtk53732/BreezyVoice/batch_inference.py", line 62, in main
+    cosyvoice = CustomCosyVoice(args.model_path)
+  File "/proj/MR_dataset/mtk53732/BreezyVoice/single_inference.py", line 223, in __init__
+    with open('{}/cosyvoice.yaml'.format(model_dir), 'r') as f:
+FileNotFoundError: [Errno 2] No such file or directory: '/proj/MR_dataset/mtk53732/pretrained_models/BreezyVoice-300M/cosyvoice.yaml'
