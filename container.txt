@@ -21,10 +21,16 @@ CUDA_VISIBLE_DEVICES=3 python batch_inference.py \
 CosyVoice-ttsfrd  campplus.onnx       cosyvoice.yaml                    flow.encoder.fp32.zip  hift.pt  speech_tokenizer_v1.onnx
 README.md         configuration.json  flow.decoder.estimator.fp32.onnx  flow.pt                llm.pt   spk2info.pt
 
-python - <<'PY'
+
+
+
+root@4af1ef855bd6:/proj/MR_dataset/mtk53732/BreezyVoice# python - <<'PY'
 import os
 p="/proj/MR_dataset/mtk53732/pretrained_models/BreezyVoice-300M"
 print(os.path.isdir(p))
 print(os.path.isfile(p + "/cosyvoice.yaml"))
 print(os.listdir(p))
 PY
+True
+False
+['CosyVoice-ttsfrd', '.gitattributes', 'speech_tokenizer_v1.onnx', 'cosyvoice.yaml', 'spk2info.pt', 'README.md', 'configuration.json', 'hift.pt', 'llm.pt', 'flow.decoder.estimator.fp32.onnx', 'flow.pt', 'flow.encoder.fp32.zip', 'campplus.onnx']
