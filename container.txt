@@ -21,12 +21,10 @@ CUDA_VISIBLE_DEVICES=3 python batch_inference.py \
 CosyVoice-ttsfrd  campplus.onnx       cosyvoice.yaml                    flow.encoder.fp32.zip  hift.pt  speech_tokenizer_v1.onnx
 README.md         configuration.json  flow.decoder.estimator.fp32.onnx  flow.pt                llm.pt   spk2info.pt
 
-
-Traceback (most recent call last):
-  File "/proj/MR_dataset/mtk53732/BreezyVoice/batch_inference.py", line 76, in <module>
-    main()
-  File "/proj/MR_dataset/mtk53732/BreezyVoice/batch_inference.py", line 62, in main
-    cosyvoice = CustomCosyVoice(args.model_path)
-  File "/proj/MR_dataset/mtk53732/BreezyVoice/single_inference.py", line 223, in __init__
-    with open('{}/cosyvoice.yaml'.format(model_dir), 'r') as f:
-FileNotFoundError: [Errno 2] No such file or directory: '/proj/MR_dataset/mtk53732/pretrained_models/BreezyVoice-300M/cosyvoice.yaml'
+python - <<'PY'
+import os
+p="/proj/MR_dataset/mtk53732/pretrained_models/BreezyVoice-300M"
+print(os.path.isdir(p))
+print(os.path.isfile(p + "/cosyvoice.yaml"))
+print(os.listdir(p))
+PY
