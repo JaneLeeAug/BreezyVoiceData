@@ -1,1 +1,23 @@
-podman push my-image mtkomcr-dev.mediatek.inc/mr/my-image
+(base) gpu_mtk53732@colglx2002:/proj/MR_dataset/mtk53732/pretrained_models$ podman login mtkomcr-dev.mediatek.inc
+Authenticating with existing credentials for mtkomcr-dev.mediatek.inc
+Existing credentials are valid. Already logged in to mtkomcr-dev.mediatek.inc
+(base) gpu_mtk53732@colglx2002:/proj/MR_dataset/mtk53732/pretrained_models$ podman push my-image mtkomcr-dev.mediatek.inc/mr/bz:260504
+Error: my-image: image not known
+(base) gpu_mtk53732@colglx2002:/proj/MR_dataset/mtk53732/pretrained_models$ podman push bz:260504 mtkomcr-dev.mediatek.inc/mr/bz:260504
+Getting image source signatures
+Error: trying to reuse blob sha256:39fbf5f8fe523b2ea819cd8eb2bf68807d8eaee383549f7ab80a44503ed6860b at destination: checking whether a blob sha256:39fbf5f8fe523b2ea819cd8eb2bf68807d8eaee383549f7ab80a44503ed6860b exists in mtkomcr-dev.mediatek.inc/mr/bz: authentication required
+(base) gpu_mtk53732@colglx2002:/proj/MR_dataset/mtk53732/pretrained_models$ podman push bz:260504 mtkomcr-dev.mediatek.inc/mr/bz
+Getting image source signatures
+Error: trying to reuse blob sha256:39fbf5f8fe523b2ea819cd8eb2bf68807d8eaee383549f7ab80a44503ed6860b at destination: checking whether a blob sha256:39fbf5f8fe523b2ea819cd8eb2bf68807d8eaee383549f7ab80a44503ed6860b exists in mtkomcr-dev.mediatek.inc/mr/bz: authentication required
+(base) gpu_mtk53732@colglx2002:/proj/MR_dataset/mtk53732/pretrained_models$ podman images
+REPOSITORY                TAG         IMAGE ID      CREATED      SIZE
+localhost/bz              260504      a0aadc82e3e5  2 hours ago  12.8 GB
+<none>                    <none>      fe7e9018ef68  3 hours ago  7.74 GB
+<none>                    <none>      08877f9e2809  5 hours ago  7.74 GB
+<none>                    <none>      dce2da6ec118  5 hours ago  574 MB
+<none>                    <none>      cf0877ba79f6  5 hours ago  574 MB
+<none>                    <none>      cca8379d2ee5  6 hours ago  681 MB
+docker.io/library/ubuntu  22.04       714d1a2f39e9  3 weeks ago  80.6 MB
+(base) gpu_mtk53732@colglx2002:/proj/MR_dataset/mtk53732/pretrained_models$ podman push localhost/bz:260504 mtkomcr-dev.mediatek.inc/mr/bz
+Getting image source signatures
+Error: trying to reuse blob sha256:39fbf5f8fe523b2ea819cd8eb2bf68807d8eaee383549f7ab80a44503ed6860b at destination: checking whether a blob sha256:39fbf5f8fe523b2ea819cd8eb2bf68807d8eaee383549f7ab80a44503ed6860b exists in mtkomcr-dev.mediatek.inc/mr/bz: authentication required
