@@ -1,112 +1,57 @@
-# file: Dockerfile
- 
-# Use the pytorch image as the base.
-#FROM oa-mirror.mediatek.inc:5000/nvidia/nemo:25.04
+# file: bz.Dockerfile
+
 FROM docker.io/library/ubuntu:22.04
- 
-# Update and install system dependencies.
-# The `&&` combines commands to create a single layer, which is more efficient.
-# RUN apt-get update && apt-get install -y --no-install-recommends \
-#     # && apt-get install curl wget vim tmux unzip libaio-dev pdsh ccache build-essential cmake zlib1g-dev libbz2-dev liblzma-dev net-tools iperf3 -y \
-#     # Add any other system-level dependencies here
-#     && rm -rf /var/lib/apt/lists/*
- 
- 
+
 # set proxy for building
 ARG PIP_EXTRA_INDEX_URL=http://oa-mirror.mediatek.inc/repository/pypi/simple
- 
-# set pip.conf & disable pip cache to reduce docker layer size
-RUN pip config set global.index-url http://oa-mirror.mediatek.inc/repository/pypi/simple \
-  && pip config set global.trusted-host oa-mirror.mediatek.inc \
-  && pip config set global.extra-index-url http://oa-mirror.mediatek.inc/repository/pypi/simple \
-  && pip config set global.no-cache-dir true
- 
-# upgrade ubuntu
+
+# upgrade ubuntu source
 COPY mtk_sources.list /etc/apt/sources.list
-RUN rm /etc/apt/sources.list.d/*
- 
- 
-# update apt deps
-RUN apt-get upgrade -y \
-     && apt-get update -y \
-     && apt-get install -y --no-install-recommends curl wget vim tmux unzip libaio-dev pdsh ccache build-essential cmake zlib1g-dev libbz2-dev liblzma-dev net-tools iperf3 git\
-     && rm -rf /var/lib/apt/lists/*
-#RUN apt-get update -y \
-#    && apt-get install -y --no-install-recommends curl wget vim tmux unzip libaio-dev pdsh ccache build-essential cmake zlib1g-dev libbz2-dev liblzma-dev net-tools iperf3 git\
-#    && rm -rf /var/lib/apt/lists/*
- 
- 
- 
-# Check for ABI and install appropriate flash-attention wheel
-# https://github.com/Dao-AILab/flash-attention/issues/457
-# RUN ABI_FLAG=$(python -c "import torch; print('TRUE' if torch._C._GLIBCXX_USE_CXX11_ABI else 'FALSE')") && \
-#     echo "Detected ABI: $ABI_FLAG" && \
-#     if [ "$ABI_FLAG" = "TRUE" ]; then \
-#         echo "Installing flash-attention for ABI TRUE" && \
-#         wget https://github.com/Dao-AILab/flash-attention/releases/download/v2.8.3/flash_attn-2.8.3+cu12torch2.7cxx11abiTRUE-cp312-cp312-linux_x86_64.whl && \
-#         pip3 install flash_attn-2.8.3+cu12torch2.7cxx11abiTRUE-cp312-cp312-linux_x86_64.whl --no-build-isolation && \
-#         rm flash_attn-2.8.3+cu12torch2.7cxx11abiTRUE-cp312-cp312-linux_x86_64.whl; \
-#     else \
-#         echo "Installing flash-attention for ABI FALSE" && \
-#         wget https://github.com/Dao-AILab/flash-attention/releases/download/v2.8.3/flash_attn-2.8.3+cu12torch2.7cxx11abiTRUE-cp312-cp312-linux_x86_64.whl && \
-#         pip3 install flash_attn-2.8.3+cu12torch2.7cxx11abiFALSE-cp312-cp312-linux_x86_64.whl --no-build-isolation && \
-#         rm flash_attn-2.8.3+cu12torch2.7cxx11abiFALSE-cp312-cp312-linux_x86_64.whl; \
-#     fi
- 
- 
-# Install OLMo dependencies without copying source code
-# This allows mounting source code at runtime for quick iterations without rebuilding
-# Dependencies are taken from pyproject.toml [project.dependencies] and [project.optional-dependencies]
- 
-# RUN pip3 install -U --no-cache-dir transformers
- 
-# RUN pip3 install --no-cache-dir \
-#     # Core dependencies
-    # "numpy<2" \
-    # "torch>=2.4" \
-    # "ai2-olmo-core>=1.8.0" \
-    # omegaconf \
-    # rich \
-    # boto3 \
-    # google-cloud-storage \
-    # tokenizers \
-    # packaging \
-    # "cached_path>=1.6.2" \
-    # "transformers>=4.50.0" \
-    # importlib_resources \
-    # Training dependencies
-    # wandb \
-    # beaker-gantry \
-    # click \
-    # torchmetrics \
-    # "smashed[remote]>=0.21.1" \
-    # safetensors \
-    # datasets \
-    # scikit-learn \
-    # "msgspec>=0.14.0" \
-    # # Dev dependencies (optional but useful)
-    # ruff \
-    # "mypy>=1.0,<1.4" \
-    # "black>=23.1,<24.0" \
-    # "isort>=5.12,<5.13" \
-    # pytest \
-    # pytest-sphinx \
-    # tensorboard
-    # transformer-engine
- 
-# RUN pip3 install --no-cache-dir \
-#     transformers==4.39.0 \
-#     tokenizers==0.15.2
-RUN pip3 install -r bz_requirements.txt
- 
+RUN rm -f /etc/apt/sources.list.d/*
+
+# install system dependencies + python/pip
+RUN apt-get update -y \
+    && apt-get upgrade -y \
+    && apt-get install -y --no-install-recommends \
+        python3 \
+        python3-pip \
+        python-is-python3 \
+        curl \
+        wget \
+        vim \
+        tmux \
+        unzip \
+        libaio-dev \
+        pdsh \
+        ccache \
+        build-essential \
+        cmake \
+        zlib1g-dev \
+        libbz2-dev \
+        liblzma-dev \
+        net-tools \
+        iperf3 \
+        git \
+    && rm -rf /var/lib/apt/lists/*
+
+# set pip.conf & disable pip cache to reduce docker layer size
+RUN pip3 config set global.index-url http://oa-mirror.mediatek.inc/repository/pypi/simple \
+    && pip3 config set global.trusted-host oa-mirror.mediatek.inc \
+    && pip3 config set global.extra-index-url http://oa-mirror.mediatek.inc/repository/pypi/simple \
+    && pip3 config set global.no-cache-dir true
+
+# copy requirements into image
+COPY bz_requirements.txt /tmp/bz_requirements.txt
+
+# install python dependencies
+RUN pip3 install -r /tmp/bz_requirements.txt
+
 # Set up the expected mount point for source code
-# You'll mount your source code to /workspace at runtime
 WORKDIR /workspace
- 
+
 # Set environment variables
 ENV CUDA_HOME=/opt/conda
 ENV PYTHONPATH=/workspace:$PYTHONPATH
- 
-# remove entr-ypoint due to LSF bug
-# ENTRYPOINT ["/opt/nvidia/nvidia_entrypoint.sh"]
+
+# remove entrypoint due to LSF bug
 ENTRYPOINT []
