@@ -16,10 +16,8 @@ CUDA_VISIBLE_DEVICES=3 python batch_inference.py \
   --csv_file ../pairing_table.csv \
   --speaker_prompt_audio_folder ../speakerWav \
   --output_audio_folder ../SD
-
-(base) gpu_mtk53732@colglx2002:/proj/MR_dataset/mtk53732/pretrained_models/BreezyVoice-300M$ ls
-CosyVoice-ttsfrd  campplus.onnx       cosyvoice.yaml                    flow.encoder.fp32.zip  hift.pt  speech_tokenizer_v1.onnx
-README.md         configuration.json  flow.decoder.estimator.fp32.onnx  flow.pt                llm.pt   spk2info.pt
-
-
-ls /proj/gpu_mtk53732/.cache/huggingface/hub/models--MediaTek-Research--BreezyVoice-300M/snapshots
+python - <<'PY'
+import os
+p="/proj/MR_dataset/mtk53732/pretrained_models/BreezyVoice-300M"
+print(os.path.isfile(p + "/cosyvoice.yaml"))
+PY
