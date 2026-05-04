@@ -1,2 +1,18 @@
-find /proj/MR_dataset/mtk53732 -maxdepth 4 -type d | grep -i -E "cosy|breezy|model|pretrained"
+(base) gpu_mtk53732@colglx2002:~$ find /proj/MR_dataset/mtk53732 -maxdepth 4 -type d | grep -i -E "cosy|breezy|model|pretrained"
 find $HOME -maxdepth 5 -type d | grep -i -E "huggingface|cosy|breezy|model"
+/proj/MR_dataset/mtk53732/BreezyVoice
+/proj/MR_dataset/mtk53732/BreezyVoice/__pycache__
+/proj/MR_dataset/mtk53732/BreezyVoice/cosyvoice
+/proj/MR_dataset/mtk53732/BreezyVoice/cosyvoice/__pycache__
+/proj/MR_dataset/mtk53732/BreezyVoice/cosyvoice/bin
+/proj/MR_dataset/mtk53732/BreezyVoice/cosyvoice/cli
+/proj/MR_dataset/mtk53732/BreezyVoice/cosyvoice/cli/__pycache__
+/proj/MR_dataset/mtk53732/BreezyVoice/cosyvoice/dataset
+/proj/MR_dataset/mtk53732/BreezyVoice/cosyvoice/dataset/__pycache__
+/proj/MR_dataset/mtk53732/BreezyVoice/cosyvoice/flow
+/proj/MR_dataset/mtk53732/BreezyVoice/cosyvoice/flow/__pycache__
+/proj/MR_dataset/mtk53732/BreezyVoice/cosyvoice/hifigan
+/proj/MR_dataset/mtk53732/BreezyVoice/cosyvoice/hifigan/__pycache__
+/proj/MR_dataset/mtk53732/BreezyVoice/cosyvoice/llm
+/proj/MR_dataset/mtk53732/BreezyVoice/cosyvoice/llm/__pycache__
+/proj/MR_dataset/mtk53732/BreezyVoice/cosyvoice/transformer
