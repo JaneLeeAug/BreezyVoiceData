@@ -1,57 +1,26 @@
-# file: bz.Dockerfile
+Writing to /root/.config/pip/pip.conf
+--> 3970b1c82620
+STEP 7/12: COPY bz_requirements.txt /tmp/bz_requirements.txt
+--> cca8379d2ee5
+STEP 8/12: RUN pip3 install -r /tmp/bz_requirements.txt
+error: externally-managed-environment
 
-FROM docker.io/library/ubuntu:22.04
+× This environment is externally managed
+╰─> To install Python packages system-wide, try apt install
+    python3-xyz, where xyz is the package you are trying to
+    install.
+    
+    If you wish to install a non-Debian-packaged Python package,
+    create a virtual environment using python3 -m venv path/to/venv.
+    Then use path/to/venv/bin/python and path/to/venv/bin/pip. Make
+    sure you have python3-full installed.
+    
+    If you wish to install a non-Debian packaged Python application,
+    it may be easiest to use pipx install xyz, which will manage a
+    virtual environment for you. Make sure you have pipx installed.
+    
+    See /usr/share/doc/python3.12/README.venv for more information.
 
-# set proxy for building
-ARG PIP_EXTRA_INDEX_URL=http://oa-mirror.mediatek.inc/repository/pypi/simple
-
-# upgrade ubuntu source
-COPY mtk_sources.list /etc/apt/sources.list
-RUN rm -f /etc/apt/sources.list.d/*
-
-# install system dependencies + python/pip
-RUN apt-get update -y \
-    && apt-get upgrade -y \
-    && apt-get install -y --no-install-recommends \
-        python3 \
-        python3-pip \
-        python-is-python3 \
-        curl \
-        wget \
-        vim \
-        tmux \
-        unzip \
-        libaio-dev \
-        pdsh \
-        ccache \
-        build-essential \
-        cmake \
-        zlib1g-dev \
-        libbz2-dev \
-        liblzma-dev \
-        net-tools \
-        iperf3 \
-        git \
-    && rm -rf /var/lib/apt/lists/*
-
-# set pip.conf & disable pip cache to reduce docker layer size
-RUN pip3 config set global.index-url http://oa-mirror.mediatek.inc/repository/pypi/simple \
-    && pip3 config set global.trusted-host oa-mirror.mediatek.inc \
-    && pip3 config set global.extra-index-url http://oa-mirror.mediatek.inc/repository/pypi/simple \
-    && pip3 config set global.no-cache-dir true
-
-# copy requirements into image
-COPY bz_requirements.txt /tmp/bz_requirements.txt
-
-# install python dependencies
-RUN pip3 install -r /tmp/bz_requirements.txt
-
-# Set up the expected mount point for source code
-WORKDIR /workspace
-
-# Set environment variables
-ENV CUDA_HOME=/opt/conda
-ENV PYTHONPATH=/workspace:$PYTHONPATH
-
-# remove entrypoint due to LSF bug
-ENTRYPOINT []
+note: If you believe this is a mistake, please contact your Python installation or OS distribution provider. You can override this, at the risk of breaking your Python installation or OS, by passing --break-system-packages.
+hint: See PEP 668 for the detailed specification.
+Error: building at STEP "RUN pip3 install -r /tmp/bz_requirements.txt": while running runtime: exit status 1
