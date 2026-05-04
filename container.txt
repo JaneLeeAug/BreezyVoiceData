@@ -1,11 +1,1 @@
-RUN pip config set global.trusted-host download.pytorch.org \
-    && pip config set global.trusted-host oa-mirror.mediatek.inc
-
-
-RUN pip install \
-    --index-url https://download.pytorch.org/whl/cu118 \
-    --trusted-host download.pytorch.org \
-    --trusted-host oa-mirror.mediatek.inc \
-    torch==2.3.1+cu118 \
-    torchaudio==2.3.1+cu118 \
-    torchvision==0.18.1+cu118
+ENV PIP_NO_VERIFY_CERTS=1
