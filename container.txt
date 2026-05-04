@@ -1,4 +1,57 @@
-ERROR: Ignored the following versions that require a different python version: 0.36.0 Requires-Python >=3.6,<3.10; 0.37.0 Requires-Python >=3.7,<3.10; 0.38.0 Requires-Python >=3.7,<3.11; 0.38.1 Requires-Python >=3.7,<3.11; 0.52.0 Requires-Python >=3.6,<3.9; 0.52.0rc3 Requires-Python >=3.6,<3.9; 0.53.0 Requires-Python >=3.6,<3.10; 0.53.0rc1.post1 Requires-Python >=3.6,<3.10; 0.53.0rc2 Requires-Python >=3.6,<3.10; 0.53.0rc3 Requires-Python >=3.6,<3.10; 0.53.1 Requires-Python >=3.6,<3.10; 0.54.0 Requires-Python >=3.7,<3.10; 0.54.0rc2 Requires-Python >=3.7,<3.10; 0.54.0rc3 Requires-Python >=3.7,<3.10; 0.54.1 Requires-Python >=3.7,<3.10; 0.55.0 Requires-Python >=3.7,<3.11; 0.55.0rc1 Requires-Python >=3.7,<3.11; 0.55.1 Requires-Python >=3.7,<3.11; 0.55.2 Requires-Python >=3.7,<3.11; 1.21.2 Requires-Python >=3.7,<3.11; 1.21.3 Requires-Python >=3.7,<3.11; 1.21.4 Requires-Python >=3.7,<3.11; 1.21.5 Requires-Python >=3.7,<3.11; 1.21.6 Requires-Python >=3.7,<3.11
-ERROR: Could not find a version that satisfies the requirement onnxruntime-gpu==1.16.0 (from versions: 1.17.0, 1.17.1, 1.18.0, 1.18.1, 1.19.0, 1.19.2, 1.20.0, 1.20.1, 1.20.2, 1.21.0, 1.21.1, 1.22.0, 1.23.0, 1.23.2, 1.24.1, 1.24.2, 1.24.3, 1.24.4, 1.25.0.dev20260417005, 1.25.0, 1.25.1)
-ERROR: No matching distribution found for onnxruntime-gpu==1.16.0
-Error: building at STEP "RUN pip3 install --break-system-packages -r /tmp/bz_requirements.txt": while running runtime: exit status 1
+# file: bz.Dockerfile
+
+FROM docker.io/library/ubuntu:22.04
+
+# set proxy for building
+ARG PIP_EXTRA_INDEX_URL=http://oa-mirror.mediatek.inc/repository/pypi/simple
+
+# upgrade ubuntu source
+COPY mtk_sources.list /etc/apt/sources.list
+RUN rm -f /etc/apt/sources.list.d/*
+
+# install system dependencies + python/pip
+RUN apt-get update -y \
+    && apt-get upgrade -y \
+    && apt-get install -y --no-install-recommends \
+        python3 \
+        python3-pip \
+        python-is-python3 \
+        curl \
+        wget \
+        vim \
+        tmux \
+        unzip \
+        libaio-dev \
+        pdsh \
+        ccache \
+        build-essential \
+        cmake \
+        zlib1g-dev \
+        libbz2-dev \
+        liblzma-dev \
+        net-tools \
+        iperf3 \
+        git \
+    && rm -rf /var/lib/apt/lists/*
+
+# set pip.conf & disable pip cache to reduce docker layer size
+RUN pip3 config set global.index-url http://oa-mirror.mediatek.inc/repository/pypi/simple \
+    && pip3 config set global.trusted-host oa-mirror.mediatek.inc \
+    && pip3 config set global.extra-index-url http://oa-mirror.mediatek.inc/repository/pypi/simple \
+    && pip3 config set global.no-cache-dir true
+
+# copy requirements into image
+COPY bz_requirements.txt /tmp/bz_requirements.txt
+
+# install python dependencies
+RUN pip3 install --break-system-packages -r /tmp/bz_requirements.txt
+
+# Set up the expected mount point for source code
+WORKDIR /workspace
+
+# Set environment variables
+ENV CUDA_HOME=/opt/conda
+ENV PYTHONPATH=/workspace:$PYTHONPATH
+
+# remove entrypoint due to LSF bug
+ENTRYPOINT []
