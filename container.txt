@@ -56,3 +56,9 @@ import inspect
 from g2pw import G2PWConverter
 print(inspect.signature(G2PWConverter))
 PY
+
+
+
+
+
+ls /proj/gpu_mtk53732/.cache/huggingface/hub/models--bert-base-chinese/snapshots
