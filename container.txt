@@ -1,9 +1,38 @@
-ls /proj/gpu_mtk53732/.cache/huggingface/hub/models--MediaTek-Research--BreezyVoice-300M/snapshots
-
-
-
-CUDA_VISIBLE_DEVICES=3 python batch_inference.py \
-  --model_path /proj/gpu_mtk53732/.cache/huggingface/hub/models--MediaTek-Research--BreezyVoice-300M/snapshots/<那個hash> \
-  --csv_file ../pairing_table.csv \
-  --speaker_prompt_audio_folder ../speakerWav \
-  --output_audio_folder ../SD
+Traceback (most recent call last):
+  File "/proj/MR_dataset/mtk53732/BreezyVoice/batch_inference.py", line 76, in <module>
+    main()
+  File "/proj/MR_dataset/mtk53732/BreezyVoice/batch_inference.py", line 63, in main
+    bopomofo_converter = G2PWConverter()
+  File "/opt/bz_venv/lib/python3.10/site-packages/g2pw/api.py", line 79, in __init__
+    self.tokenizer = BertTokenizer.from_pretrained(self.model_source)
+  File "/opt/bz_venv/lib/python3.10/site-packages/transformers/tokenization_utils_base.py", line 1628, in from_pretrained
+    resolved_config_file = cached_file(
+  File "/opt/bz_venv/lib/python3.10/site-packages/transformers/utils/hub.py", line 278, in cached_file
+    file = cached_files(path_or_repo_id=path_or_repo_id, filenames=[filename], **kwargs)
+  File "/opt/bz_venv/lib/python3.10/site-packages/transformers/utils/hub.py", line 512, in cached_files
+    raise e
+  File "/opt/bz_venv/lib/python3.10/site-packages/transformers/utils/hub.py", line 422, in cached_files
+    hf_hub_download(
+  File "/opt/bz_venv/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 88, in _inner_fn
+    return fn(*args, **kwargs)
+  File "/opt/bz_venv/lib/python3.10/site-packages/huggingface_hub/file_download.py", line 997, in hf_hub_download
+    return _hf_hub_download_to_cache_dir(
+  File "/opt/bz_venv/lib/python3.10/site-packages/huggingface_hub/file_download.py", line 1130, in _hf_hub_download_to_cache_dir
+    _get_metadata_or_catch_error(
+  File "/opt/bz_venv/lib/python3.10/site-packages/huggingface_hub/file_download.py", line 1669, in _get_metadata_or_catch_error
+    metadata = get_hf_file_metadata(
+  File "/opt/bz_venv/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 88, in _inner_fn
+    return fn(*args, **kwargs)
+  File "/opt/bz_venv/lib/python3.10/site-packages/huggingface_hub/file_download.py", line 1591, in get_hf_file_metadata
+    response = _httpx_follow_relative_redirects_with_backoff(
+  File "/opt/bz_venv/lib/python3.10/site-packages/huggingface_hub/utils/_http.py", line 685, in _httpx_follow_relative_redirects_with_backoff
+    response = http_backoff(
+  File "/opt/bz_venv/lib/python3.10/site-packages/huggingface_hub/utils/_http.py", line 559, in http_backoff
+    return next(
+  File "/opt/bz_venv/lib/python3.10/site-packages/huggingface_hub/utils/_http.py", line 467, in _http_backoff_base
+    response = client.request(method=method, url=url, **kwargs)
+  File "/opt/bz_venv/lib/python3.10/site-packages/httpx/_client.py", line 825, in request
+    return self.send(request, auth=auth, follow_redirects=follow_redirects)
+  File "/opt/bz_venv/lib/python3.10/site-packages/httpx/_client.py", line 901, in send
+    raise RuntimeError("Cannot send a request, as the client has been closed.")
+RuntimeError: Cannot send a request, as the client has been closed.
