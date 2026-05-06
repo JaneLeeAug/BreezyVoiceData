@@ -4,3 +4,21 @@ python speakerlab/bin/infer_sv.py \
 
 
 ls -1 | shuf -n 10
+
+
+
+
+
+(3dspeaker39) gpu_mtk53732@colglx2002:/proj/MR_dataset/mtk53732$ podman images
+REPOSITORY                      TAG                IMAGE ID      CREATED        SIZE
+localhost/3dspeaker             latest             fd6c8252be46  41 hours ago   6.79 GB
+<none>                          <none>             6a79f9ec0169  42 hours ago   80.6 MB
+mtkomcr-dev.mediatek.inc/mr/bz  260504             a0aadc82e3e5  45 hours ago   12.8 GB
+localhost/bz                    260504             a0aadc82e3e5  45 hours ago   12.8 GB
+<none>                          <none>             fe7e9018ef68  45 hours ago   7.74 GB
+<none>                          <none>             08877f9e2809  47 hours ago   7.74 GB
+<none>                          <none>             dce2da6ec118  2 days ago     574 MB
+<none>                          <none>             cf0877ba79f6  2 days ago     574 MB
+<none>                          <none>             cca8379d2ee5  2 days ago     681 MB
+docker.io/library/ubuntu        22.04              714d1a2f39e9  3 weeks ago    80.6 MB
+docker.io/library/python        3.9-slim-bullseye  ed6f8d42e445  11 months ago  128 MB
