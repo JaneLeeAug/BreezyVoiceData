@@ -27,3 +27,10 @@ podman push my-image mtkomcr-dev.mediatek.inc/mr/my-image
 
 
 podman push mtkomcr-dev.mediatek.inc/mr/bz:260504
+
+#/bin/tcsh
+set gpus=$1
+if ( "$gpus" == "" ) then
+    set gpus = all
+endif
+echo "Using gpus: $gpus"
