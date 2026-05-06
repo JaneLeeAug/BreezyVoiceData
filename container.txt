@@ -34,3 +34,21 @@ if ( "$gpus" == "" ) then
     set gpus = all
 endif
 echo "Using gpus: $gpus"
+
+
+
+
+
+
+
+
+
+
+#/bin/tcsh
+set gpus=$1
+if ( "$gpus" == "" ) then
+    set gpus = all
+endif
+echo "Using gpus: $gpus"
+ 
+podman run -it --device nvidia.com/gpu=$gpus -v /nobackup/gpu_d_09023_t2:/nobackup/gpu_d_09023_t2 -v /proj/gpu_d_09023_MR_dataset_ARCHIVE:/proj/gpu_d_09023_MR_dataset_ARCHIVE -v /proj/gpu_d_09023:/proj/gpu_d_09023 --shm-size 200g bz:260504
