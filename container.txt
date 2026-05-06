@@ -56,3 +56,24 @@ podman run -it \
   --shm-size 200g \
   bz:260504 \
   /bin/bash
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+CUDA_VISIBLE_DEVICES=3 python batch_inference.py \
+  --model_path /proj/gpu_d_09023_MR_dataset_ARCHIVE/mtk53732/pretrained_models/BreezyVoice-300M \
+  --csv_file ../pairingTable/pairing_table.csv \
+  --speaker_prompt_audio_folder ../speakerWav \
+  --output_audio_folder /proj/gpu_d_09023/mtk53732/SD
