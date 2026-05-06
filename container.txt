@@ -24,3 +24,6 @@ docker.io/library/ubuntu        22.04              714d1a2f39e9  3 weeks ago    
 docker.io/library/python        3.9-slim-bullseye  ed6f8d42e445  11 months ago  128 MB
 
 podman push my-image mtkomcr-dev.mediatek.inc/mr/my-image
+
+
+podman push mtkomcr-dev.mediatek.inc/mr/bz:260504
