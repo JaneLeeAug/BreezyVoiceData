@@ -22,3 +22,5 @@ localhost/bz                    260504             a0aadc82e3e5  45 hours ago   
 <none>                          <none>             cca8379d2ee5  2 days ago     681 MB
 docker.io/library/ubuntu        22.04              714d1a2f39e9  3 weeks ago    80.6 MB
 docker.io/library/python        3.9-slim-bullseye  ed6f8d42e445  11 months ago  128 MB
+
+podman push my-image mtkomcr-dev.mediatek.inc/mr/my-image
