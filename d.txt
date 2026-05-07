@@ -1,0 +1,46 @@
+#!/bin/bash
+set -x
+app=podman
+queue=Container
+proj_id=d_09023
+gpu_qty=1
+host_group=GPU_B200
+# gpu_qty=8
+# host_group=GPU_A6000_8
+ 
+podman_url=mtkcmcr.mediatek.inc
+podman_image=mr/nemo-25.11-olmo-eval
+# podman_image=mr/gt_train_no_bash:250911
+image="$podman_url/$podman_image"
+preexec="/bin/podman login $podman_url --username mtk53570 --password f7fa1A33"
+# olmo2_src_dir=/proj/mtklmadm/dev/mtk53559/hourglass_llm/horizontal_flow/train
+podmanParams="--gpus 'all' --ipc 'host' --network 'host' --ulimit 'memlock=-1' --ulimit 'stack=67108864' \
+    -v /proj/gpu_d_09023:/proj/gpu_d_09023 \
+    -v /nobackup/gpu_d_09023_t2:/nobackup/gpu_d_09023_t2 \
+    -v /proj/gpu_d_09023_MR_dataset_ARCHIVE:/proj/gpu_d_09023_MR_dataset_ARCHIVE"
+    # -v ${olmo2_src_dir}:/workspace \
+ 
+export LSB_CONTAINER_IMAGE=$image
+export MTKLSF_PODMAN=$podmanParams
+ 
+uid="$(date +%Y%m%d_%H%M%S)"
+ 
+log_filepath=${2:-output}.$uid.log
+ 
+# bsub -tty -q $queue \
+#     -app $app \
+#     -P $proj_id \
+#     -m $host_group \
+#     -gpu num=$gpu_qty \
+#     -o $log_filepath \
+#     -e $log_filepath \
+#     -E "$preexec" \
+#     $1
+ 
+bsub -Is -q $queue \
+    -app $app \
+    -P $proj_id \
+    -m $host_group \
+    -gpu num=$gpu_qty \
+    -E "$preexec" \
+    /proj/gpu_mtk53726/horizontal_flow/nemo/pretraining_script/shscript.sh
