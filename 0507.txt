@@ -1,0 +1,4 @@
+ls -l /proj/gpu_mtk53732/.cache/g2pw/
+total 4
+drwxr-xr-x 3 gpu_mtk53732 gpu_mtk53732 4096 Apr 17 16:47 G2PWModel
+(base) gpu_mtk53732@colglx2002:/proj/MR_dataset/mtk53732/BreezyVoice$
