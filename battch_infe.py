@@ -30,36 +30,51 @@ def process_batch(csv_file, speaker_prompt_audio_folder, output_audio_folder, mo
     cosyvoice, bopomofo_converter = model
 
     def gen_audio(row):
-        speaker_prompt_audio_path = os.path.join(speaker_prompt_audio_folder, f"{row['speaker_prompt_audio_filename']}.wav")
+        speaker_prompt_audio_path = os.path.join(
+            speaker_prompt_audio_folder,
+            f"{row['speaker_prompt_audio_filename']}.wav"
+        )
         speaker_prompt_text_transcription = row['speaker_prompt_text_transcription']
         content_to_synthesize = row['content_to_synthesize']
-        output_audio_path = os.path.join(output_audio_folder, f"{row['output_audio_filename']}.wav")
-
+        output_audio_path = os.path.join(
+            output_audio_folder,
+            f"{row['output_audio_filename']}.wav"
+        )
+    
         if not os.path.exists(speaker_prompt_audio_path):
-            print(f"File {speaker_prompt_audio_path} does not exist")
-            return row #{"status": "failed", "reason": "file not found"}
-        if not os.path.exists(output_audio_path):
-            single_inference(speaker_prompt_audio_path, content_to_synthesize, output_audio_path, cosyvoice, bopomofo_converter, speaker_prompt_text_transcription)
-        else:
-            pass
-        # command = [
-        #     "python", "single_inference.py",
-        #     "--speaker_prompt_audio_path", speaker_prompt_audio_path,
-        #     "--speaker_prompt_text_transcription", speaker_prompt_text_transcription,
-        #     "--content_to_synthesize", content_to_synthesize,
-        #     "--output_path", output_audio_path
-        # ]
-
-        # try:
-        #     print(f"Processing: {speaker_prompt_audio_path}")
-        #     subprocess.run(command, check=True)
-        #     print(f"Generated: {output_audio_path}")
-        #     return row #{"status": "success", "output": gen_voice_file_name}
-        # except subprocess.CalledProcessError as e:
-        #     print(f"Failed to generate {speaker_prompt_audio_path}, error: {e}")
-        #     return row #{"status": "failed", "reason": str(e)}
-
-    dataset = dataset.map(gen_audio)
+            print(f"[SKIP] Speaker prompt file does not exist: {speaker_prompt_audio_path}")
+            return row
+    
+        if os.path.exists(output_audio_path):
+            print(f"[SKIP] Output already exists: {output_audio_path}")
+            return row
+    
+        try:
+            success = single_inference(
+                speaker_prompt_audio_path,
+                content_to_synthesize,
+                output_audio_path,
+                cosyvoice,
+                bopomofo_converter,
+                speaker_prompt_text_transcription,
+            )
+    
+            if success is False:
+                print(f"[SKIP] single_inference returned False: {output_audio_path}")
+            else:
+                print(f"[DONE] Generated: {output_audio_path}")
+    
+        except Exception as e:
+            print("=" * 80)
+            print("[FAILED] single_inference crashed")
+            print("speaker_prompt_audio_path:", repr(speaker_prompt_audio_path))
+            print("speaker_prompt_text_transcription:", repr(speaker_prompt_text_transcription))
+            print("content_to_synthesize:", repr(content_to_synthesize))
+            print("output_audio_path:", repr(output_audio_path))
+            print("error:", repr(e))
+            print("=" * 80)
+    
+        return row
 
 def main():
     parser = argparse.ArgumentParser(description="Batch process audio generation.")
