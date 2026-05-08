@@ -1,0 +1,20 @@
+    process_batch(
+  File "/proj/gpu_d_09023/mtk53732/BreezyVoice/batch_inference.py", line 62, in process_batch
+    dataset = dataset.map(gen_audio)
+  File "/opt/bz_venv/lib/python3.10/site-packages/datasets/arrow_dataset.py", line 574, in wrapper
+    out: Union["Dataset", "DatasetDict"] = func(self, *args, **kwargs)
+  File "/opt/bz_venv/lib/python3.10/site-packages/datasets/arrow_dataset.py", line 3632, in map
+    for rank, done, content in Dataset._map_single(**unprocessed_kwargs):
+  File "/opt/bz_venv/lib/python3.10/site-packages/datasets/arrow_dataset.py", line 3972, in _map_single
+    for i, example in iter_outputs(shard_iterable):
+  File "/opt/bz_venv/lib/python3.10/site-packages/datasets/arrow_dataset.py", line 3950, in iter_outputs
+    yield i, apply_function(example, i, offset=offset)
+  File "/opt/bz_venv/lib/python3.10/site-packages/datasets/arrow_dataset.py", line 3871, in apply_function
+    processed_inputs = function(*fn_args, *additional_args, **fn_kwargs)
+  File "/proj/gpu_d_09023/mtk53732/BreezyVoice/batch_inference.py", line 42, in gen_audio
+    single_inference(speaker_prompt_audio_path, content_to_synthesize, output_audio_path, cosyvoice, bopomofo_converter, speaker_prompt_text_transcription)
+  File "/proj/gpu_d_09023/mtk53732/BreezyVoice/single_inference.py", line 406, in single_inference
+    output = cosyvoice.inference_zero_shot_no_normalize(content_to_synthesize_bopomo, speaker_prompt_text_transcription_bopomo, prompt_speech_16k)
+  File "/proj/gpu_d_09023/mtk53732/BreezyVoice/single_inference.py", line 288, in inference_zero_shot_no_normalize
+    return {'tts_speech': torch.concat(tts_speeches, dim=1)}
+RuntimeError: torch.cat(): expected a non-empty list of Tensors
