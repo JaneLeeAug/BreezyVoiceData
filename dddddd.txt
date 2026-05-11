@@ -1,0 +1,11 @@
+root@7f7912dd1ee1:/proj/gpu_mtk53732/3D-Speaker# python speakerlab/bin/infer_sv.py \
+  --model_id iic/speech_campplus_sv_zh-cn_16k-common \
+  --wavs /proj/MR_dataset/mtk53732/SDSD0003640036.wav /proj/MR_dataset/mtk53732/SD/SD0002567077.wav
+
+  
+Traceback (most recent call last):
+  File "/proj/gpu_mtk53732/3D-Speaker/speakerlab/bin/infer_sv.py", line 340, in <module>
+    main()
+  File "/proj/gpu_mtk53732/3D-Speaker/speakerlab/bin/infer_sv.py", line 229, in main
+    assert cache_dir.exists(), f'Model cache not found: {cache_dir}'
+AssertionError: Model cache not found: /root/.cache/modelscope/hub/models/iic/speech_campplus_sv_zh-cn_16k-common
