@@ -1,0 +1,4 @@
+(bz) gpu_mtk53732@colglx2002:~$ podman build -t 3dspeaker2 -f ./3dspeaker_2.Dockerfile 
+STEP 1/16: FROM docker.io/library/python:3.9-slim-bullworm
+Trying to pull docker.io/library/python:3.9-slim-bullworm...
+Error: creating build container: initializing source docker://python:3.9-slim-bullworm: reading manifest 3.9-slim-bullworm in docker.io/library/python: manifest unknown
