@@ -1,0 +1,54 @@
+root@88d1ed5a8673:/proj/gpu_mtk53732/3D-Speaker# python speakerlab/bin/infer_sv.py \
+  --model_id iic/speech_campplus_sv_zh-cn_16k-common \
+  --wavs /proj/MR_dataset/mtk53732/SDSD0003640036.wav /proj/MR_dataset/mtk53732/SD/SD0002567077.wav
+Traceback (most recent call last):
+  File "/opt/3dspeaker_venv/lib/python3.9/site-packages/numpy/_core/__init__.py", line 23, in <module>
+    from . import multiarray
+  File "/opt/3dspeaker_venv/lib/python3.9/site-packages/numpy/_core/multiarray.py", line 10, in <module>
+    from . import overrides
+  File "/opt/3dspeaker_venv/lib/python3.9/site-packages/numpy/_core/overrides.py", line 8, in <module>
+    from numpy._core._multiarray_umath import (
+ImportError: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.38' not found (required by /usr/lib/x86_64-linux-gnu/libstdc++.so.6)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/3dspeaker_venv/lib/python3.9/site-packages/numpy/__init__.py", line 114, in <module>
+    from numpy.__config__ import show as show_config
+  File "/opt/3dspeaker_venv/lib/python3.9/site-packages/numpy/__config__.py", line 4, in <module>
+    from numpy._core._multiarray_umath import (
+  File "/opt/3dspeaker_venv/lib/python3.9/site-packages/numpy/_core/__init__.py", line 49, in <module>
+    raise ImportError(msg)
+ImportError: 
+
+IMPORTANT: PLEASE READ THIS FOR ADVICE ON HOW TO SOLVE THIS ISSUE!
+
+Importing the numpy C-extensions failed. This error can happen for
+many reasons, often due to issues with your setup or how NumPy was
+installed.
+
+We have compiled some common reasons and troubleshooting tips at:
+
+    https://numpy.org/devdocs/user/troubleshooting-importerror.html
+
+Please note and check the following:
+
+  * The Python version is: Python3.9 from "/opt/3dspeaker_venv/bin/python"
+  * The NumPy version is: "2.0.2"
+
+and make sure that they are the versions you expect.
+Please carefully study the documentation linked above for further help.
+
+Original error was: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.38' not found (required by /usr/lib/x86_64-linux-gnu/libstdc++.so.6)
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/proj/gpu_mtk53732/3D-Speaker/speakerlab/bin/infer_sv.py", line 21, in <module>
+    import numpy as np
+  File "/opt/3dspeaker_venv/lib/python3.9/site-packages/numpy/__init__.py", line 119, in <module>
+    raise ImportError(msg) from e
+ImportError: Error importing numpy: you should not try to import numpy from
+        its source directory; please exit the numpy source tree, and relaunch
+        your python interpreter from there
